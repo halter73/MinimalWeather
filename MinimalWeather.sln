@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31220.234
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet", "dotnet", "{D9412169-AC2F-4133-981B-6E8886A4B18B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalWeather", "dotnet\MinimalWeather\MinimalWeather.csproj", "{21AACC07-77CD-4CAB-B129-31B2058A9B63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21AACC07-77CD-4CAB-B129-31B2058A9B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21AACC07-77CD-4CAB-B129-31B2058A9B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21AACC07-77CD-4CAB-B129-31B2058A9B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21AACC07-77CD-4CAB-B129-31B2058A9B63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{21AACC07-77CD-4CAB-B129-31B2058A9B63} = {D9412169-AC2F-4133-981B-6E8886A4B18B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A91ADAEC-BE58-4669-A744-FA3F246E5F92}
+	EndGlobalSection
+EndGlobal
