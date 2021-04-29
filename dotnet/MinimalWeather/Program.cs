@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +18,20 @@ using var httpClient = new HttpClient()
 {
     BaseAddress = new Uri("https://atlas.microsoft.com/weather/")
 };
+
+app.MapGet("/weather/{location}", async (Coordinate location) =>
+{
+    var currentQuery = httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQueryString}&query={location}");
+    var hourlyQuery = httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24");
+    var dailyQuery = httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{baseQueryString}&query={location}&duration=10");
+
+    return new
+    {
+        CurrentWeather = (await currentQuery).Results.FirstOrDefault(),
+        HourlyForecasts = (await hourlyQuery).Forecasts,
+        DailyForecasts = (await dailyQuery).Forecasts
+    };
+});
 
 app.MapGet("/weather/{location}/current", (Coordinate location) =>
      httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQueryString}&query={location}"));
