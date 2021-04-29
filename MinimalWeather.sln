@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31220.234
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet", "dotnet", "{D9412169-AC2F-4133-981B-6E8886A4B18B}"
+	ProjectSection(SolutionItems) = preProject
+		dotnet\global.json = dotnet\global.json
+		dotnet\NuGet.config = dotnet\NuGet.config
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalWeather", "dotnet\MinimalWeather\MinimalWeather.csproj", "{21AACC07-77CD-4CAB-B129-31B2058A9B63}"
 EndProject
