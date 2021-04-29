@@ -41,14 +41,14 @@ app.Run();
 Program.cs also *temporarily* includes these passthrough endpoints that copies the full response from the Azure Maps API. If there's anything needed from any of the `/proxyweather` endpoints please tell @halter73 before the demo.
 ```C#
 // These endpoints are temporary to give UI devs a chance to grab data we're not forwarding yet.
-app.MapGet("/proxyweather/{location}/current", (Func<Coordinate, Task<string>>)((Coordinate location) =>
-     httpClient.GetStringAsync($"currentConditions/json?{baseQueryString}&query={location}")));
+app.MapGet("/proxyweather/{location}/current", (Coordinate location) =>
+     httpClient.GetStringAsync($"currentConditions/json?{baseQueryString}&query={location}"));
 
-app.MapGet("/proxyweather/{location}/forecast/hourly", (Func<Coordinate, Task<string>>)((Coordinate location) =>
-     httpClient.GetStringAsync($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24")));
+app.MapGet("/proxyweather/{location}/forecast/hourly", (Coordinate location) =>
+     httpClient.GetStringAsync($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24")))
 
-app.MapGet("/proxyweather/{location}/forecast/daily", (Func<Coordinate, Task<string>>)((Coordinate location) =>
-     httpClient.GetStringAsync($"forecast/daily/json?{baseQueryString}&query={location}&duration=10")));
+app.MapGet("/proxyweather/{location}/forecast/daily", (Coordinate location) =>
+     httpClient.GetStringAsync($"forecast/daily/json?{baseQueryString}&query={location}&duration=10"));
 
 ```
 
@@ -74,6 +74,7 @@ https://localhost:5001/weather/47.6062,-122.3321/current
 ```
 
 https://localhost:5001/proxyweather/47.6062,-122.3321/current
+
 <details>
   <summary>Click to expand.</summary>
   
@@ -252,6 +253,7 @@ https://localhost:5001/proxyweather/47.6062,-122.3321/current
 ### Hourly Forecast
 
 https://localhost:5001/weather/47.6062,-122.3321/forecast/hourly
+
 <details>
   <summary>Click to expand.</summary>
   
@@ -454,7 +456,9 @@ https://localhost:5001/weather/47.6062,-122.3321/forecast/hourly
 }
 ```
 </details>
+
 https://localhost:5001/proxyweather/47.6062,-122.3321/forecast/hourly
+
 <details>
   <summary>Click to expand.</summary>
   
@@ -2485,6 +2489,7 @@ https://localhost:5001/proxyweather/47.6062,-122.3321/forecast/hourly
 ### Daily Forecast
 
 https://localhost:5001/weather/47.6062,-122.3321/forecast/daily
+
 <details>
   <summary>Click to expand.</summary>
   
@@ -2685,7 +2690,9 @@ https://localhost:5001/weather/47.6062,-122.3321/forecast/daily
 }
 ```
 </details>
+
 https://localhost:5001/proxyweather/47.6062,-122.3321/forecast/daily
+
 <details>
   <summary>Click to expand.</summary>
   
