@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet", "dotnet", "{D94121
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalWeather", "dotnet\MinimalWeather\MinimalWeather.csproj", "{21AACC07-77CD-4CAB-B129-31B2058A9B63}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "node", "node", "{0366EA48-5C84-4ED1-BA3C-9D1D1D9A8DAA}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "ExpressWeather", "node\ExpressWeather\ExpressWeather.njsproj", "{15240BB2-DAE2-462D-A762-83F886536AA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,12 +25,17 @@ Global
 		{21AACC07-77CD-4CAB-B129-31B2058A9B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21AACC07-77CD-4CAB-B129-31B2058A9B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21AACC07-77CD-4CAB-B129-31B2058A9B63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15240BB2-DAE2-462D-A762-83F886536AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15240BB2-DAE2-462D-A762-83F886536AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15240BB2-DAE2-462D-A762-83F886536AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15240BB2-DAE2-462D-A762-83F886536AA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{21AACC07-77CD-4CAB-B129-31B2058A9B63} = {D9412169-AC2F-4133-981B-6E8886A4B18B}
+		{15240BB2-DAE2-462D-A762-83F886536AA0} = {0366EA48-5C84-4ED1-BA3C-9D1D1D9A8DAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A91ADAEC-BE58-4669-A744-FA3F246E5F92}
