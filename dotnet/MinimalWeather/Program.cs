@@ -26,15 +26,15 @@ app.UseResponseCaching();
 
 app.MapGet("/weather/{location}", async (Coordinate location) =>
 {
-    var currentQuery = httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQueryString}&query={location}");
-    var hourlyQuery = httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24");
-    var dailyQuery = httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{baseQueryString}&query={location}&duration=10");
+    var currentWeather = await httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQueryString}&query={location}");
+    var hourlyWeather = await httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24");
+    var dailyWeather = await httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{baseQueryString}&query={location}&duration=10");
 
     return new
     {
-        CurrentWeather = (await currentQuery).Results.FirstOrDefault(),
-        HourlyForecasts = (await hourlyQuery).Forecasts,
-        DailyForecasts = (await dailyQuery).Forecasts
+        CurrentWeather = currentWeather.Results.FirstOrDefault(),
+        HourlyForecasts = hourlyWeather.Forecasts,
+        DailyForecasts = dailyWeather.Forecasts
     };
 });
 
