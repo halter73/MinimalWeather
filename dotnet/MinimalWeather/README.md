@@ -1,4 +1,10 @@
-﻿## Program.cs
+﻿## Build instructions
+
+To build the [main](https://github.com/halter73/MinimalWeather/tree/main/dotnet/MinimalWeather) branch relying on the natural type for lambdas, you can checkout the [features/compiler roslyn branch](https://github.com/dotnet/roslyn/tree/features/compiler) and set "Roslyn.VisualStudio.Setup" as your startup project to launch VS. Then you need to add something like `<CscToolPath>C:\dev\dotnet\roslyn\artifacts\bin\csc\Debug\net472</CscToolPath>` to the csproj.
+ 
+If you just want to test in C# 9 for now, you can just checkout the [csharp-nine](https://github.com/halter73/MinimalWeather/tree/csharp-nine/dotnet/MinimalWeather) branch I just pushed that does a bunch of casting. Either way you'll need a preview4 sdk which you can get from dotnet/installer.
+
+## Program.cs
 
 The current majority of the program lives in Program.cs.
 
