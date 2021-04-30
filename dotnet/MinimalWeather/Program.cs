@@ -10,10 +10,7 @@ using MinimalWeather;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("weather", policyBuilder =>
-    {
-        policyBuilder.AllowAnyOrigin();
-    });
+    options.AddPolicy("weather", policyBuilder => policyBuilder.AllowAnyOrigin());
 });
 var app = builder.Build();
 
