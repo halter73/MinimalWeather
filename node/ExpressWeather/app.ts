@@ -1,3 +1,4 @@
+import * as cors from 'cors';
 import * as express from 'express';
 import got from 'got';
 
@@ -6,7 +7,7 @@ const app = express();
 var baseUrl = "https://atlas.microsoft.com/weather/";
 var baseQuery = `api-version=1.0&subscription-key=${process.env["SubscriptionKey"]}&unit=imperial`;
 
-app.get('/weather/:lat,:lon', async (req, res, next) => {
+app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
     try {
         const lat = parseFloat(req.params.lat);
         const lon = parseFloat(req.params.lon);
