@@ -92,7 +92,7 @@ namespace MinimalWeather
                 return false;
             }
 
-            coordinate = new Coordinate(lat, lon);
+            coordinate = new(lat, lon);
             return true;
         }
 

@@ -19,19 +19,20 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-var baseQueryString = $"api-version=1.0&subscription-key={app.Configuration["SubscriptionKey"]}&unit=imperial";
+var baseQuery = $"api-version=1.0&subscription-key={app.Configuration["SubscriptionKey"]}&unit=imperial";
 using var httpClient = new HttpClient()
 {
     BaseAddress = new Uri("https://atlas.microsoft.com/weather/")
 };
 
 app.UseCors();
+app.UseHttpsRedirection();
 
 app.MapGet("/weather/{location}", [EnableCors("weather")] async (Coordinate location) =>
 {
-    var currentQuery = httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQueryString}&query={location}");
-    var hourlyQuery = httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24");
-    var dailyQuery = httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{baseQueryString}&query={location}&duration=10");
+    var currentQuery = httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQuery}&query={location}");
+    var hourlyQuery = httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{baseQuery}&query={location}&duration=24");
+    var dailyQuery = httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{baseQuery}&query={location}&duration=10");
 
     // Wait for the 3 parallel requests to complete and combine the responses.
     return new
