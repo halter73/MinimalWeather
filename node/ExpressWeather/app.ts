@@ -31,12 +31,6 @@ app.get('/weather/:lat,:lon', async (req, res, next) => {
     }
 });
 
-app.use((err, req, res, next) => {
-    console.error(err);
-    res.status(500);
-    res.send();
-});
-
 const port = process.env.PORT || 3000
 
 app.listen(port, function () {
