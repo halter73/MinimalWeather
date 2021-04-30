@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <LangVersion>Preview</LangVersion>
+    <LangVersion>Latest</LangVersion>
     <UserSecretsId>2bd37d96-2487-4c58-a5f3-ddd2524920ea</UserSecretsId>
   </PropertyGroup>
 

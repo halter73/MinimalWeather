@@ -70,6 +70,13 @@ namespace MinimalWeather
         public FullDayForecast[] Forecasts { get; set; }
     }
 
+    public class CombinedWeather
+    {
+        public WeatherSnapshot CurrentWeather { get; set; }
+        public WeatherSnapshot[] HourlyForecasts { get; set; }
+        public FullDayForecast[] DailyForecasts { get; set; }
+    }
+
     public record Coordinate(double Latitude, double Longitude)
     {
         public static bool TryParse(string input, out Coordinate coordinate)
