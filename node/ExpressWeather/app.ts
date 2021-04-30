@@ -24,7 +24,7 @@ app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
 
         await res.json({
             currentWeather: currentWeather.results[0],
-            hourlyForcasts: hourlyForecast.forecasts,
+            hourlyForecasts: hourlyForecast.forecasts,
             dailyForecasts: dailyForecast.forecasts,
         });
     } catch (err) {
