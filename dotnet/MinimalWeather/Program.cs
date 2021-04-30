@@ -8,9 +8,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MinimalWeather;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddResponseCaching();
-var app = builder.Build();
+var buildier = WebApplication.CreateBuilder(args);
+buildier.Services.AddCors(options => {
+    options.AddDefaultPolicy(corsBuilder =>
+    {
+        corsBuilder.AllowAnyOrigin();
+    });
+});
+var app = buildier.Build();
 
 if (app.Environment.IsDevelopment())
 {
@@ -23,7 +28,7 @@ using var httpClient = new HttpClient()
     BaseAddress = new Uri("https://atlas.microsoft.com/weather/")
 };
 
-app.UseResponseCaching();
+app.UseCors();
 
 app.MapGet("/weather/{location}", (Func<Coordinate, Task<CombinedWeather>>)(async (Coordinate location) =>
 {
