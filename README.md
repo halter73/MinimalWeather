@@ -8,6 +8,7 @@
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,11 +34,13 @@ app.MapGet("/weather/{location}", [EnableCors("weather")] async (Coordinate loca
     var dailyQuery = httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{baseQuery}&query={location}&duration=10");
 
     // Wait for the 3 parallel requests to complete and combine the responses.
+    await Task.WhenAll(currentQuery, hourlyQuery, dailyQuery);
+
     return new
     {
-        CurrentWeather = (await currentQuery).Results[0],
-        HourlyForecasts = (await hourlyQuery).Forecasts,
-        DailyForecasts = (await dailyQuery).Forecasts,
+        CurrentWeather = currentQuery.Result.Results[0],
+        HourlyForecasts = hourlyQuery.Result.Forecasts,
+        DailyForecasts = dailyQuery.Result.Forecasts,
     };
 });
 
@@ -259,11 +262,13 @@ namespace WebApiWeather.Controllers
             var dailyQuery = _weatherService.GetFromJsonAsync<DailyForecast>("forecast/daily/json", $"&query={latitude},{longitude}&duration=10");
 
             // Wait for the 3 parallel requests to complete and combine the responses.
+            await Task.WhenAll(currentQuery, hourlyQuery, dailyQuery);
+
             return new()
             {
-                CurrentWeather = (await currentQuery).Results[0],
-                HourlyForecasts = (await hourlyQuery).Forecasts,
-                DailyForecasts = (await dailyQuery).Forecasts,
+                CurrentWeather = currentQuery.Result.Results[0],
+                HourlyForecasts = hourlyQuery.Result.Forecasts,
+                DailyForecasts = dailyQuery.Result.Forecasts,
             };
         }
     }

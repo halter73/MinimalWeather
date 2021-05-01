@@ -24,11 +24,13 @@ namespace WebApiWeather.Controllers
             var dailyQuery = _weatherService.GetFromJsonAsync<DailyForecast>("forecast/daily/json", $"&query={latitude},{longitude}&duration=10");
 
             // Wait for the 3 parallel requests to complete and combine the responses.
+            await Task.WhenAll(currentQuery, hourlyQuery, dailyQuery);
+
             return new()
             {
-                CurrentWeather = (await currentQuery).Results[0],
-                HourlyForecasts = (await hourlyQuery).Forecasts,
-                DailyForecasts = (await dailyQuery).Forecasts,
+                CurrentWeather = currentQuery.Result.Results[0],
+                HourlyForecasts = hourlyQuery.Result.Forecasts,
+                DailyForecasts = dailyQuery.Result.Forecasts,
             };
         }
     }
