@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace WebApiWeather
 {
-    public class WeatherService
+    public class WeatherService : IDisposable
     {
         private readonly HttpClient _httpClient;
         private readonly string _baseQueryString;
@@ -23,5 +23,10 @@ namespace WebApiWeather
 
         public Task<T> GetFromJsonAsync<T>(string path, string extraQuery)
              => _httpClient.GetFromJsonAsync<T>($"{path}?{_baseQueryString}{extraQuery}");
+
+        public void Dispose()
+        {
+            _httpClient.Dispose();
+        }
     }
 }
