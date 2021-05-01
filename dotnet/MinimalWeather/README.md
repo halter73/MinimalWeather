@@ -31,11 +31,13 @@ using var httpClient = new HttpClient();
 httpClient.BaseAddress = new Uri("https://atlas.microsoft.com/weather/");
 var baseQuery = $"api-version=1.0&subscription-key={app.Configuration["SubscriptionKey"]}&unit=imperial";
 
+Task<T> GetAsync<T>(string path, string query) => httpClient.GetFromJsonAsync<T>($"{path}?{baseQuery}{query}");
+
 app.MapGet("/weather/{location}", [EnableCors("weather")] async (Coordinate location) =>
 {
-    var currentQuery = httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQuery}&query={location}");
-    var hourlyQuery = httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{baseQuery}&query={location}&duration=24");
-    var dailyQuery = httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{baseQuery}&query={location}&duration=10");
+    var currentQuery = GetAsync<CurrentWeather>("currentConditions/json", $"&query={location}");
+    var hourlyQuery = GetAsync<HourlyForecast>("forecast/hourly/json", $"&query={location}&duration=24");
+    var dailyQuery = GetAsync<DailyForecast>("forecast/daily/json", $"&query={location}&duration=10");
 
     // Wait for the 3 parallel requests to complete and combine the responses.
     await Task.WhenAll(currentQuery, hourlyQuery, dailyQuery);

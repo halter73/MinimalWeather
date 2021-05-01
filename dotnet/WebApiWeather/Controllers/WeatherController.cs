@@ -24,9 +24,9 @@ namespace WebApiWeather.Controllers
         [HttpGet("{latitude},{longitude}")]
         public async Task<CombinedWeather> Get(double latitude, double longitude)
         {
-            var currentQuery = _httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{_baseQuery}&query={latitude},{longitude}");
-            var hourlyQuery = _httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{_baseQuery}&query={latitude},{longitude}&duration=24");
-            var dailyQuery = _httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{_baseQuery}&query={latitude},{longitude}&duration=10");
+            var currentQuery = GetAsync<CurrentWeather>("currentConditions/json", $"&query={latitude},{longitude}");
+            var hourlyQuery = GetAsync<HourlyForecast>("forecast/hourly/json", $"&query={latitude},{longitude}&duration=24");
+            var dailyQuery = GetAsync<DailyForecast>("forecast/daily/json", $"&query={latitude},{longitude}&duration=10");
 
             // Wait for the 3 parallel requests to complete and combine the responses.
             await Task.WhenAll(currentQuery, hourlyQuery, dailyQuery);
@@ -38,5 +38,7 @@ namespace WebApiWeather.Controllers
                 DailyForecasts = dailyQuery.Result.Forecasts,
             };
         }
+
+        private Task<T> GetAsync<T>(string path, string query) => _httpClient.GetFromJsonAsync<T>($"{path}?{_baseQuery}{query}");
     }
 }
