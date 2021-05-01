@@ -15,10 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MinimalWeather;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("weather", policyBuilder => policyBuilder.AllowAnyOrigin());
-});
+builder.Services.AddCors(options => options.AddPolicy("weather", o => o.AllowAnyOrigin()));
 
 var app = builder.Build();
 app.UseCors();
