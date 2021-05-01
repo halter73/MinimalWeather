@@ -30,13 +30,12 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+using var httpClient = new HttpClient();
+httpClient.BaseAddress = new Uri("https://atlas.microsoft.com/weather/");
 var baseQuery = $"api-version=1.0&subscription-key={app.Configuration["SubscriptionKey"]}&unit=imperial";
-using var httpClient = new HttpClient()
-{
-    BaseAddress = new Uri("https://atlas.microsoft.com/weather/")
-};
 
 app.UseCors();
+app.UseHttpsRedirection();
 
 app.MapGet("/weather/{location}", [EnableCors("weather")] async (Coordinate location) =>
 {
