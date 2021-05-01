@@ -15,7 +15,6 @@ using System.Net.Http.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using MinimalWeather;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,19 +22,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("weather", policyBuilder => policyBuilder.AllowAnyOrigin());
 });
-var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
+var app = builder.Build();
+app.UseCors();
 
 using var httpClient = new HttpClient();
 httpClient.BaseAddress = new Uri("https://atlas.microsoft.com/weather/");
 var baseQuery = $"api-version=1.0&subscription-key={app.Configuration["SubscriptionKey"]}&unit=imperial";
-
-app.UseCors();
-app.UseHttpsRedirection();
 
 app.MapGet("/weather/{location}", [EnableCors("weather")] async (Coordinate location) =>
 {
@@ -48,7 +41,7 @@ app.MapGet("/weather/{location}", [EnableCors("weather")] async (Coordinate loca
     {
         CurrentWeather = (await currentQuery).Results[0],
         HourlyForecasts = (await hourlyQuery).Forecasts,
-        DailyForecasts = (await dailyQuery).Forecasts
+        DailyForecasts = (await dailyQuery).Forecasts,
     };
 });
 

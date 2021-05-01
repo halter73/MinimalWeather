@@ -11,7 +11,6 @@ using System.Net.Http.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using MinimalWeather;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,19 +18,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("weather", policyBuilder => policyBuilder.AllowAnyOrigin());
 });
-var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
+var app = builder.Build();
+app.UseCors();
 
 using var httpClient = new HttpClient();
 httpClient.BaseAddress = new Uri("https://atlas.microsoft.com/weather/");
 var baseQuery = $"api-version=1.0&subscription-key={app.Configuration["SubscriptionKey"]}&unit=imperial";
-
-app.UseCors();
-app.UseHttpsRedirection();
 
 app.MapGet("/weather/{location}", [EnableCors("weather")] async (Coordinate location) =>
 {
@@ -44,11 +37,55 @@ app.MapGet("/weather/{location}", [EnableCors("weather")] async (Coordinate loca
     {
         CurrentWeather = (await currentQuery).Results[0],
         HourlyForecasts = (await hourlyQuery).Forecasts,
-        DailyForecasts = (await dailyQuery).Forecasts
+        DailyForecasts = (await dailyQuery).Forecasts,
     };
 });
 
 app.Run();
+```
+
+## Express
+
+### [app.ts](https://github.com/halter73/MinimalWeather/blob/main/node/ExpressWeather/app.ts)
+
+```typescript
+import * as cors from 'cors';
+import * as express from 'express';
+import got from 'got';
+
+const baseUrl = 'https://atlas.microsoft.com/weather/';
+const baseQuery = `api-version=1.0&subscription-key=${process.env['SubscriptionKey']}&unit=imperial`;
+
+const app = express();
+
+app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
+    try {
+        const lat = parseFloat(req.params.lat);
+        const lon = parseFloat(req.params.lon);
+
+        const currentQuery = got(`${baseUrl}currentConditions/json?${baseQuery}&query=${lat},${lon}`);
+        const hourlyQuery = got(`${baseUrl}forecast/hourly/json?${baseQuery}&query=${lat},${lon}&duration=24`);
+        const dailyQuery = got(`${baseUrl}forecast/daily/json?${baseQuery}&query=${lat},${lon}&duration=10`);
+
+        // Wait for the 3 parallel requests to complete and combine the responses.
+        const [currentResponse, hourlyResponse, dailyResponse] = await Promise.all([currentQuery, hourlyQuery, dailyQuery]);
+
+        await res.json({
+            currentWeather: JSON.parse(currentResponse.body).results[0],
+            hourlyForecasts: JSON.parse(hourlyResponse.body).forecasts,
+            dailyForecasts: JSON.parse(dailyResponse.body).forecasts,
+        });
+    } catch (err) {
+        // Express doesn't handle async errors natively yet.
+        next(err);
+    }
+});
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, function () {
+    console.log(`Listening on port ${port}`);
+});
 ```
 
 ## ASP.NET Core Web API
@@ -213,8 +250,8 @@ namespace WebApiWeather.Controllers
             _weatherService = weatherService;
         }
 
-        [HttpGet("{latitude},{longitude}")]
         [EnableCors("weather")]
+        [HttpGet("{latitude},{longitude}")]
         public async Task<CombinedWeather> Get(double latitude, double longitude)
         {
             var currentQuery = _weatherService.GetFromJsonAsync<CurrentWeather>("currentConditions/json", $"&query={latitude},{longitude}");
@@ -226,57 +263,9 @@ namespace WebApiWeather.Controllers
             {
                 CurrentWeather = (await currentQuery).Results[0],
                 HourlyForecasts = (await hourlyQuery).Forecasts,
-                DailyForecasts = (await dailyQuery).Forecasts
+                DailyForecasts = (await dailyQuery).Forecasts,
             };
         }
     }
 }
-```
-
-## Express
-
-### [app.ts](https://github.com/halter73/MinimalWeather/blob/main/node/ExpressWeather/app.ts)
-
-```typescript
-import * as cors from 'cors';
-import * as express from 'express';
-import got from 'got';
-
-const app = express();
-
-var baseUrl = "https://atlas.microsoft.com/weather/";
-var baseQuery = `api-version=1.0&subscription-key=${process.env["SubscriptionKey"]}&unit=imperial`;
-
-app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
-    try {
-        const lat = parseFloat(req.params.lat);
-        const lon = parseFloat(req.params.lon);
-
-        const currentQuery = got(`${baseUrl}currentConditions/json?${baseQuery}&query=${lat},${lon}`);
-        const hourlyQuery = got(`${baseUrl}forecast/hourly/json?${baseQuery}&query=${lat},${lon}&duration=24`);
-        const dailyQuery = got(`${baseUrl}forecast/daily/json?${baseQuery}&query=${lat},${lon}&duration=10`);
-
-        // Wait for the 3 parallel requests to complete and combine the responses.
-        const [currentResponse, hourlyResponse, dailyResponse] = await Promise.all([currentQuery, hourlyQuery, dailyQuery]);
-
-        const currentWeather = JSON.parse(currentResponse.body);
-        const hourlyForecast = JSON.parse(hourlyResponse.body);
-        const dailyForecast = JSON.parse(dailyResponse.body);
-
-        await res.json({
-            currentWeather: currentWeather.results[0],
-            hourlyForecasts: hourlyForecast.forecasts,
-            dailyForecasts: dailyForecast.forecasts,
-        });
-    } catch (err) {
-        // Express doesn't handle async errors natively yet.
-        next(err);
-    }
-});
-
-const port = process.env.PORT || 3000
-
-app.listen(port, function () {
-    console.log(`Express server listening on port ${port}`);
-});
 ```

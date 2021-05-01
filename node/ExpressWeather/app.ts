@@ -2,10 +2,10 @@ import * as cors from 'cors';
 import * as express from 'express';
 import got from 'got';
 
-const app = express();
+const baseUrl = 'https://atlas.microsoft.com/weather/';
+const baseQuery = `api-version=1.0&subscription-key=${process.env['SubscriptionKey']}&unit=imperial`;
 
-var baseUrl = "https://atlas.microsoft.com/weather/";
-var baseQuery = `api-version=1.0&subscription-key=${process.env["SubscriptionKey"]}&unit=imperial`;
+const app = express();
 
 app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
     try {
@@ -19,14 +19,10 @@ app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
         // Wait for the 3 parallel requests to complete and combine the responses.
         const [currentResponse, hourlyResponse, dailyResponse] = await Promise.all([currentQuery, hourlyQuery, dailyQuery]);
 
-        const currentWeather = JSON.parse(currentResponse.body);
-        const hourlyForecast = JSON.parse(hourlyResponse.body);
-        const dailyForecast = JSON.parse(dailyResponse.body);
-
         await res.json({
-            currentWeather: currentWeather.results[0],
-            hourlyForecasts: hourlyForecast.forecasts,
-            dailyForecasts: dailyForecast.forecasts,
+            currentWeather: JSON.parse(currentResponse.body).results[0],
+            hourlyForecasts: JSON.parse(hourlyResponse.body).forecasts,
+            dailyForecasts: JSON.parse(dailyResponse.body).forecasts,
         });
     } catch (err) {
         // Express doesn't handle async errors natively yet.
@@ -34,8 +30,8 @@ app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
     }
 });
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 app.listen(port, function () {
-    console.log(`Express server listening on port ${port}`);
+    console.log(`Listening on port ${port}`);
 });
