@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MinimalWeather
+namespace WebApiWeather
 {
     public class WeatherSnapshot
     {
@@ -68,6 +68,13 @@ namespace MinimalWeather
     public class DailyForecast
     {
         public FullDayForecast[] Forecasts { get; set; }
+    }
+
+    public class CombinedWeather
+    {
+        public WeatherSnapshot CurrentWeather { get; set; }
+        public WeatherSnapshot[] HourlyForecasts { get; set; }
+        public FullDayForecast[] DailyForecasts { get; set; }
     }
 
     public record Coordinate(double Latitude, double Longitude)
