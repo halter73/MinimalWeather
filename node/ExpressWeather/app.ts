@@ -16,6 +16,7 @@ app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
         const hourlyQuery = got(`${baseUrl}forecast/hourly/json?${baseQuery}&query=${lat},${lon}&duration=24`);
         const dailyQuery = got(`${baseUrl}forecast/daily/json?${baseQuery}&query=${lat},${lon}&duration=10`);
 
+        // Wait for the 3 parallel requests to complete and combine the responses.
         const [currentResponse, hourlyResponse, dailyResponse] = await Promise.all([currentQuery, hourlyQuery, dailyQuery]);
 
         const currentWeather = JSON.parse(currentResponse.body);
@@ -28,6 +29,7 @@ app.get('/weather/:lat,:lon', cors(), async (req, res, next) => {
             dailyForecasts: dailyForecast.forecasts,
         });
     } catch (err) {
+        // Express doesn't handle async errors natively yet.
         next(err);
     }
 });
