@@ -28,6 +28,11 @@ namespace WebApiWeather
         {
             services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("weather", policyBuilder => policyBuilder.AllowAnyOrigin());
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiWeather", Version = "v1" });
@@ -46,9 +51,10 @@ namespace WebApiWeather
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApiWeather v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            app.UseCors();
+            app.UseHttpsRedirection();
 
             app.UseEndpoints(endpoints =>
             {

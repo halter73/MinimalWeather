@@ -16,6 +16,7 @@ namespace WebApiWeather.Controllers
         }
 
         [HttpGet("{latitude},{longitude}")]
+        [EnableCors("weather")]
         public async Task<CombinedWeather> Get(double latitude, double longitude)
         {
             var currentQuery = _weatherService.GetFromJsonAsync<CurrentWeather>("currentConditions/json", $"&query={latitude},{longitude}");
