@@ -28,6 +28,11 @@ namespace WebApiWeather
         {
             services.AddControllers();
 
+            services.AddHttpClient("weather", options =>
+            {
+                options.BaseAddress = new Uri("https://atlas.microsoft.com/weather/");
+            });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("weather", policyBuilder => policyBuilder.AllowAnyOrigin());
@@ -37,8 +42,6 @@ namespace WebApiWeather
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiWeather", Version = "v1" });
             });
-
-            services.AddSingleton<WeatherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
