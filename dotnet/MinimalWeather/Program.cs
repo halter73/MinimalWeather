@@ -13,8 +13,10 @@ builder.Services.AddCors(options => options.AddPolicy("weather", o => o.AllowAny
 var app = builder.Build();
 app.UseCors();
 
-using var httpClient = new HttpClient();
-httpClient.BaseAddress = new Uri("https://atlas.microsoft.com/weather/");
+using var httpClient = new HttpClient
+{
+    BaseAddress = new("https://atlas.microsoft.com/weather/")
+};
 var baseQuery = $"api-version=1.0&subscription-key={app.Configuration["SubscriptionKey"]}&unit=imperial";
 
 Task<T> GetAsync<T>(string path, string query) => httpClient.GetFromJsonAsync<T>($"{path}?{baseQuery}{query}");
