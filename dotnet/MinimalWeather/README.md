@@ -59,229 +59,323 @@ https://localhost:5001/weather/47.6062,-122.3321/
 ```json
 {
   "currentWeather": {
-    "dateTime": "2021-04-30T19:20:00+00:00",
+    "dateTime": "2021-05-03T19:36:00+00:00",
     "phrase": "Cloudy",
     "temperature": {
-      "value": 58,
+      "value": 56,
       "unit": "F"
-    }
+    },
+    "relativeHumidity": 70,
+    "precipitationProbability": null
   },
   "hourlyForecasts": [
     {
-      "dateTime": "2021-04-30T20:00:00+00:00",
+      "dateTime": "2021-05-03T20:00:00+00:00",
+      "phrase": "Showers",
+      "temperature": {
+        "value": 56,
+        "unit": "F"
+      },
+      "relativeHumidity": 63,
+      "precipitationProbability": 40
+    },
+    {
+      "dateTime": "2021-05-03T21:00:00+00:00",
       "phrase": "Cloudy",
-      "temperature": {
-        "value": 58,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-04-30T21:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 60,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-04-30T22:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 61,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-04-30T23:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 63,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T00:00:00+00:00",
-      "phrase": "Rain",
-      "temperature": {
-        "value": 63,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T01:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 62,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T02:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 61,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T03:00:00+00:00",
-      "phrase": "Intermittent clouds",
-      "temperature": {
-        "value": 60,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T04:00:00+00:00",
-      "phrase": "Intermittent clouds",
-      "temperature": {
-        "value": 59,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T05:00:00+00:00",
-      "phrase": "Intermittent clouds",
-      "temperature": {
-        "value": 57,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T06:00:00+00:00",
-      "phrase": "Intermittent clouds",
       "temperature": {
         "value": 55,
         "unit": "F"
-      }
+      },
+      "relativeHumidity": 64,
+      "precipitationProbability": 34
     },
     {
-      "dateTime": "2021-05-01T07:00:00+00:00",
+      "dateTime": "2021-05-03T22:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 56,
+        "unit": "F"
+      },
+      "relativeHumidity": 63,
+      "precipitationProbability": 28
+    },
+    {
+      "dateTime": "2021-05-03T23:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 57,
+        "unit": "F"
+      },
+      "relativeHumidity": 62,/current
+      "precipitationProbability": 29
+    },
+    {
+      "dateTime": "2021-05-04T00:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 57,
+        "unit": "F"
+      },
+      "relativeHumidity": 59,
+      "precipitationProbability": 32
+    },
+    {
+      "dateTime": "2021-05-04T01:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 57,
+        "unit": "F"
+      },
+      "relativeHumidity": 59,
+      "precipitationProbability": 32
+    },
+    {
+      "dateTime": "2021-05-04T02:00:00+00:00",
       "phrase": "Mostly cloudy",
+      "temperature": {
+        "value": 56,
+        "unit": "F"
+      },
+      "relativeHumidity": 60,
+      "precipitationProbability": 25
+    },
+    {
+      "dateTime": "2021-05-04T03:00:00+00:00",
+      "phrase": "Mostly cloudy",
+      "temperature": {
+        "value": 56,
+        "unit": "F"
+      },
+      "relativeHumidity": 62,
+      "precipitationProbability": 12
+    },
+    {
+      "dateTime": "2021-05-04T04:00:00+00:00",
+      "phrase": "Mostly cloudy",
+      "temperature": {
+        "value": 56,
+        "unit": "F"
+      },
+      "relativeHumidity": 63,
+      "precipitationProbability": 12
+    },
+    {
+      "dateTime": "2021-05-04T05:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 55,
+        "unit": "F"
+      },
+      "relativeHumidity": 66,
+      "precipitationProbability": 16
+    },
+    {
+      "dateTime": "2021-05-04T06:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 55,
+        "unit": "F"
+      },
+      "relativeHumidity": 68,
+      "precipitationProbability": 47
+    },
+    {
+      "dateTime": "2021-05-04T07:00:00+00:00",
+      "phrase": "Showers",
       "temperature": {
         "value": 54,
         "unit": "F"
-      }
+      },
+      "relativeHumidity": 69,
+      "precipitationProbability": 51
     },
     {
-      "dateTime": "2021-05-01T08:00:00+00:00",
-      "phrase": "Showers",
+      "dateTime": "2021-05-04T08:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 54,
+        "unit": "F"
+      },
+      "relativeHumidity": 70,
+      "precipitationProbability": 47
+    },
+    {
+      "dateTime": "2021-05-04T09:00:00+00:00",
+      "phrase": "Cloudy",
       "temperature": {
         "value": 53,
         "unit": "F"
-      }
+      },
+      "relativeHumidity": 70,
+      "precipitationProbability": 32
     },
     {
-      "dateTime": "2021-05-01T09:00:00+00:00",
+      "dateTime": "2021-05-04T10:00:00+00:00",
       "phrase": "Cloudy",
       "temperature": {
-        "value": 51,
+        "value": 53,
         "unit": "F"
-      }
+      },
+      "relativeHumidity": 70,
+      "precipitationProbability": 32
     },
     {
-      "dateTime": "2021-05-01T10:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 51,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T11:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 50,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T12:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 50,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T13:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 49,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T14:00:00+00:00",
+      "dateTime": "2021-05-04T11:00:00+00:00",
       "phrase": "Mostly cloudy",
       "temperature": {
-        "value": 48,
+        "value": 52,
         "unit": "F"
-      }
+      },
+      "relativeHumidity": 71,
+      "precipitationProbability": 36
     },
     {
-      "dateTime": "2021-05-01T15:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 49,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T16:00:00+00:00",
-      "phrase": "Cloudy",
-      "temperature": {
-        "value": 50,
-        "unit": "F"
-      }
-    },
-    {
-      "dateTime": "2021-05-01T17:00:00+00:00",
+      "dateTime": "2021-05-04T12:00:00+00:00",
       "phrase": "Cloudy",
       "temperature": {
         "value": 51,
         "unit": "F"
-      }
+      },
+      "relativeHumidity": 74,
+      "precipitationProbability": 43
     },
     {
-      "dateTime": "2021-05-01T18:00:00+00:00",
+      "dateTime": "2021-05-04T13:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 51,
+        "unit": "F"
+      },
+      "relativeHumidity": 74,
+      "precipitationProbability": 47
+    },
+    {
+      "dateTime": "2021-05-04T14:00:00+00:00",
+      "phrase": "Showers",
+      "temperature": {
+        "value": 49,
+        "unit": "F"
+      },
+      "relativeHumidity": 78,
+      "precipitationProbability": 51
+    },
+    {
+      "dateTime": "2021-05-04T15:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 51,
+        "unit": "F"
+      },
+      "relativeHumidity": 77,
+      "precipitationProbability": 5
+    },
+    {
+      "dateTime": "2021-05-04T16:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 51,
+        "unit": "F"
+      },
+      "relativeHumidity": 73,
+      "precipitationProbability": 2
+    },
+    {
+      "dateTime": "2021-05-04T17:00:00+00:00",
       "phrase": "Cloudy",
       "temperature": {
         "value": 52,
         "unit": "F"
-      }
+      },
+      "relativeHumidity": 67,
+      "precipitationProbability": 2
     },
     {
-      "dateTime": "2021-05-01T19:00:00+00:00",
+      "dateTime": "2021-05-04T18:00:00+00:00",
       "phrase": "Cloudy",
       "temperature": {
-        "value": 53,
+        "value": 54,
         "unit": "F"
-      }
+      },
+      "relativeHumidity": 63,
+      "precipitationProbability": 2
+    },
+    {
+      "dateTime": "2021-05-04T19:00:00+00:00",
+      "phrase": "Cloudy",
+      "temperature": {
+        "value": 56,
+        "unit": "F"
+      },
+      "relativeHumidity": 58,
+      "precipitationProbability": 2
     }
   ],
   "dailyForecasts": [
     {
-      "dateTime": "2021-04-30T14:00:00+00:00",
+      "dateTime": "2021-05-03T14:00:00+00:00",
       "temperature": {
         "minimum": {
-          "value": 48,
+          "value": 49,
           "unit": "F"
         },
         "maximum": {
-          "value": 63,
+          "value": 57,
           "unit": "F"
         }
       },
       "day": {
-        "phrase": "Showers"
+        "phrase": "Cloudy",
+        "precipitationProbability": 47
       },
       "night": {
-        "phrase": "Mostly cloudy"
+        "phrase": "Showers",
+        "precipitationProbability": 40
       }
     },
     {
-      "dateTime": "2021-05-01T14:00:00+00:00",
+      "dateTime": "2021-05-04T14:00:00+00:00",
+      "temperature": {
+        "minimum": {
+          "value": 43,
+          "unit": "F"
+        },
+        "maximum": {
+          "value": 62,
+          "unit": "F"
+        }
+      },
+      "day": {
+        "phrase": "Mostly cloudy",
+        "precipitationProbability": 9
+      },
+      "night": {
+        "phrase": "Partly cloudy",
+        "precipitationProbability": 1
+      }
+    },
+    {
+      "dateTime": "2021-05-05T14:00:00+00:00",
+      "temperature": {
+        "minimum": {
+          "value": 53,
+          "unit": "F"
+        },
+        "maximum": {
+          "value": 70,
+          "unit": "F"
+        }
+      },
+      "day": {
+        "phrase": "Mostly cloudy",
+        "precipitationProbability": 2
+      },
+      "night": {
+        "phrase": "Partly cloudy",
+        "precipitationProbability": 18
+      }
+    },
+    {
+      "dateTime": "2021-05-06T14:00:00+00:00",
       "temperature": {
         "minimum": {
           "value": 45,
@@ -293,36 +387,19 @@ https://localhost:5001/weather/47.6062,-122.3321/
         }
       },
       "day": {
-        "phrase": "Mostly cloudy w/ showers"
+        "phrase": "Rain",
+        "precipitationProbability": 70
       },
       "night": {
-        "phrase": "Mostly cloudy"
+        "phrase": "Mostly cloudy w/ showers",
+        "precipitationProbability": 55
       }
     },
     {
-      "dateTime": "2021-05-02T14:00:00+00:00",
+      "dateTime": "2021-05-07T14:00:00+00:00",
       "temperature": {
         "minimum": {
-          "value": 44,
-          "unit": "F"
-        },
-        "maximum": {
-          "value": 61,
-          "unit": "F"
-        }
-      },
-      "day": {
-        "phrase": "Intermittent clouds"
-      },
-      "night": {
-        "phrase": "Intermittent clouds"
-      }
-    },
-    {
-      "dateTime": "2021-05-03T14:00:00+00:00",
-      "temperature": {
-        "minimum": {
-          "value": 46,
+          "value": 42,
           "unit": "F"
         },
         "maximum": {
@@ -331,71 +408,16 @@ https://localhost:5001/weather/47.6062,-122.3321/
         }
       },
       "day": {
-        "phrase": "Showers"
+        "phrase": "Showers",
+        "precipitationProbability": 80
       },
       "night": {
-        "phrase": "Showers"
+        "phrase": "Rain",
+        "precipitationProbability": 62
       }
     },
     {
-      "dateTime": "2021-05-04T14:00:00+00:00",
-      "temperature": {
-        "minimum": {
-          "value": 41,
-          "unit": "F"
-        },
-        "maximum": {
-          "value": 61,
-          "unit": "F"
-        }
-      },
-      "day": {
-        "phrase": "Mostly cloudy w/ showers"
-      },
-      "night": {
-        "phrase": "Partly cloudy"
-      }
-    },
-    {
-      "dateTime": "2021-05-05T14:00:00+00:00",
-      "temperature": {
-        "minimum": {
-          "value": 50,
-          "unit": "F"
-        },
-        "maximum": {
-          "value": 69,
-          "unit": "F"
-        }
-      },
-      "day": {
-        "phrase": "Intermittent clouds"
-      },
-      "night": {
-        "phrase": "Partly cloudy"
-      }
-    },
-    {
-      "dateTime": "2021-05-06T14:00:00+00:00",
-      "temperature": {
-        "minimum": {
-          "value": 47,
-          "unit": "F"
-        },
-        "maximum": {
-          "value": 68,
-          "unit": "F"
-        }
-      },
-      "day": {
-        "phrase": "Rain"
-      },
-      "night": {
-        "phrase": "Intermittent clouds"
-      }
-    },
-    {
-      "dateTime": "2021-05-07T14:00:00+00:00",
+      "dateTime": "2021-05-08T14:00:00+00:00",
       "temperature": {
         "minimum": {
           "value": 45,
@@ -407,36 +429,19 @@ https://localhost:5001/weather/47.6062,-122.3321/
         }
       },
       "day": {
-        "phrase": "Rain"
+        "phrase": "Mostly cloudy",
+        "precipitationProbability": 25
       },
       "night": {
-        "phrase": "Showers"
-      }
-    },
-    {
-      "dateTime": "2021-05-08T14:00:00+00:00",
-      "temperature": {
-        "minimum": {
-          "value": 46,
-          "unit": "F"
-        },
-        "maximum": {
-          "value": 61,
-          "unit": "F"
-        }
-      },
-      "day": {
-        "phrase": "Mostly cloudy"
-      },
-      "night": {
-        "phrase": "Dreary"
+        "phrase": "Intermittent clouds",
+        "precipitationProbability": 25
       }
     },
     {
       "dateTime": "2021-05-09T14:00:00+00:00",
       "temperature": {
         "minimum": {
-          "value": 47,
+          "value": 45,
           "unit": "F"
         },
         "maximum": {
@@ -445,10 +450,75 @@ https://localhost:5001/weather/47.6062,-122.3321/
         }
       },
       "day": {
-        "phrase": "Cloudy"
+        "phrase": "Showers",
+        "precipitationProbability": 35
       },
       "night": {
-        "phrase": "Intermittent clouds"
+        "phrase": "Intermittent clouds",
+        "precipitationProbability": 20
+      }
+    },
+    {
+      "dateTime": "2021-05-10T14:00:00+00:00",
+      "temperature": {
+        "minimum": {
+          "value": 46,
+          "unit": "F"
+        },
+        "maximum": {
+          "value": 65,
+          "unit": "F"
+        }
+      },
+      "day": {
+        "phrase": "Mostly cloudy",
+        "precipitationProbability": 30
+      },
+      "night": {
+        "phrase": "Intermittent clouds",
+        "precipitationProbability": 24
+      }
+    },
+    {
+      "dateTime": "2021-05-11T14:00:00+00:00",
+      "temperature": {
+        "minimum": {
+          "value": 48,
+          "unit": "F"
+        },
+        "maximum": {
+          "value": 67,
+          "unit": "F"
+        }
+      },
+      "day": {
+        "phrase": "Partly sunny",
+        "precipitationProbability": 25
+      },
+      "night": {
+        "phrase": "Mostly cloudy",
+        "precipitationProbability": 21
+      }
+    },
+    {
+      "dateTime": "2021-05-12T14:00:00+00:00",
+      "temperature": {
+        "minimum": {
+          "value": 49,
+          "unit": "F"
+        },
+        "maximum": {
+          "value": 68,
+          "unit": "F"
+        }
+      },
+      "day": {
+        "phrase": "Cloudy",
+        "precipitationProbability": 30
+      },
+      "night": {
+        "phrase": "Mostly cloudy",
+        "precipitationProbability": 16
       }
     }
   ]
