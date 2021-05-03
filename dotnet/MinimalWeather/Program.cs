@@ -44,24 +44,4 @@ app.MapGet("/weather/{location}", (Func<Coordinate, Task<CombinedWeather>>)(asyn
     };
 }));
 
-
-app.MapGet("/weather/{location}/current", (Func<Coordinate, Task<CurrentWeather>>)((Coordinate location) =>
-     httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQueryString}&query={location}")));
-
-app.MapGet("/weather/{location}/forecast/hourly", (Func<Coordinate, Task<HourlyForecast>>)((Coordinate location) =>
-     httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24")));
-
-app.MapGet("/weather/{location}/forecast/daily", (Func<Coordinate, Task<DailyForecast>>)((Coordinate location) =>
-     httpClient.GetFromJsonAsync<DailyForecast>($"forecast/daily/json?{baseQueryString}&query={location}&duration=10")));
-
-// These endpoints are temporary to give UI devs a chance to grab data we're not forwarding yet.
-app.MapGet("/proxyweather/{location}/current", (Func<Coordinate, Task<string>>)((Coordinate location) =>
-     httpClient.GetStringAsync($"currentConditions/json?{baseQueryString}&query={location}")));
-
-app.MapGet("/proxyweather/{location}/forecast/hourly", (Func<Coordinate, Task<string>>)((Coordinate location) =>
-     httpClient.GetStringAsync($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24")));
-
-app.MapGet("/proxyweather/{location}/forecast/daily", (Func<Coordinate, Task<string>>)((Coordinate location) =>
-     httpClient.GetStringAsync($"forecast/daily/json?{baseQueryString}&query={location}&duration=10")));
-
 app.Run();

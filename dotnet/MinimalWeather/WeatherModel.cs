@@ -7,6 +7,8 @@ namespace MinimalWeather
         public DateTimeOffset DateTime { get; set; }
         public string Phrase { get; set; }
         public Temperature Temperature { get; set; }
+        public int RelativeHumidity { get; set; }
+        public int? PrecipitationProbability { get; set; }
 
         public DateTimeOffset Date
         {
@@ -31,9 +33,11 @@ namespace MinimalWeather
         public Temperature Maximum { get; set; }
     }
 
-    public class PhraseOnly
+    public class DayOrNight
     {
         public string Phrase { get; set; }
+
+        public int PrecipitationProbability { get; set; }
 
         public string IconPhrase
         {
@@ -46,8 +50,8 @@ namespace MinimalWeather
         public DateTimeOffset DateTime { get; set; }
         public MinMaxTemperature Temperature { get; set; }
 
-        public PhraseOnly Day { get; set; }
-        public PhraseOnly Night { get; set;  }
+        public DayOrNight Day { get; set; }
+        public DayOrNight Night { get; set;  }
 
         public DateTimeOffset Date
         {
