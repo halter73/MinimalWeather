@@ -1,13 +1,18 @@
 using System;
-using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MinimalWeather;
+
+var cacheTimeout = TimeSpan.FromMinutes(10);
+var cache = new MemoryCache(new MemoryCacheOptions
+{
+    SizeLimit = 64,
+});
 
 var buildier = WebApplication.CreateBuilder(args);
 buildier.Services.AddCors(options => {
@@ -33,6 +38,11 @@ app.UseCors();
 
 app.MapGet("/weather/{location}", (Func<Coordinate, Task<CombinedWeather>>)(async (Coordinate location) =>
 {
+    if (cache.TryGetValue<CombinedWeather>(location, out var weather))
+    {
+        return weather;
+    }
+
     var timeZoneQuery = httpClient.GetFromJsonAsync<TimeZoneResponse>($"https://atlas.microsoft.com/timezone/byCoordinates/json?{baseQueryString}&query={location}");
     var currentQuery = httpClient.GetFromJsonAsync<CurrentWeather>($"currentConditions/json?{baseQueryString}&query={location}");
     var hourlyQuery = httpClient.GetFromJsonAsync<HourlyForecast>($"forecast/hourly/json?{baseQueryString}&query={location}&duration=24");
@@ -58,12 +68,20 @@ app.MapGet("/weather/{location}", (Func<Coordinate, Task<CombinedWeather>>)(asyn
         forecast.DateTime = forecast.DateTime.ToOffset(offset);
     }
 
-    return new CombinedWeather
+    var combined = new CombinedWeather
     {
         CurrentWeather = currentWeather,
         HourlyForecasts = hourlyForecasts,
         DailyForecasts = dailyForecasts,
     };
+
+    cache.Set(location, combined, new MemoryCacheEntryOptions
+    {
+        AbsoluteExpirationRelativeToNow = cacheTimeout,
+        Size = 1,
+    });
+
+    return combined;
 }));
 
 app.Run();
