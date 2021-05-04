@@ -81,6 +81,10 @@ namespace MinimalWeather
         public FullDayForecast[] DailyForecasts { get; set; }
     }
 
+    public record TimeZoneResponse(TimeZone[] TimeZones);
+    public record TimeZone(string Id, ReferenceTime ReferenceTime);
+    public record ReferenceTime(string StandardOffset, string DaylightSavings);
+
     public record Coordinate(double Latitude, double Longitude)
     {
         public static bool TryParse(string input, out Coordinate coordinate)
