@@ -9,15 +9,6 @@ If you just want to test in C# 9 for now, you can just checkout the [csharp-nine
 The current majority of the program lives in Program.cs.
 
 ```C#
-using System;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.Extensions.DependencyInjection;
-using MinimalWeather;
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options => options.AddPolicy("weather", o => o.AllowAnyOrigin()));
 
