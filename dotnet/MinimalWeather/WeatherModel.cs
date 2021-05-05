@@ -79,6 +79,8 @@ namespace MinimalWeather
         public WeatherSnapshot CurrentWeather { get; set; }
         public WeatherSnapshot[] HourlyForecasts { get; set; }
         public FullDayForecast[] DailyForecasts { get; set; }
+
+        public string DebugProperty { get; set; }
     }
 
     public record TimeZoneResponse(TimeZone[] TimeZones);
