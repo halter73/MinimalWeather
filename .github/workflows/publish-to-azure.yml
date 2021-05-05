@@ -22,13 +22,13 @@ jobs:
         bash ./dotnet-install.sh -Version ${{ env.DOTNET_CORE_VERSION }} -Verbose
         echo "$HOME/.dotnet" >> $GITHUB_PATH
     - name: Restore
-      run: dotnet restore "${{ env.WORKING_DIRECTORY }}" -r linux-x64
+      run: dotnet restore "${{ env.WORKING_DIRECTORY }}" -r win-x86
     - name: Build
-      run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore -r linux-x64
+      run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore -r win-x86
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --self-contained --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}" -r linux-x64
+      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --self-contained --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}" -r win-x86
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
