@@ -5,7 +5,7 @@ on: [push]
 env:
   AZURE_WEBAPP_NAME: minimalweather20210428173256    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: './dotnet/MinimalWeather'      # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: '5.x'           # set this to the dot net version to use
+  DOTNET_VERSION: '5.0.x'           # set this to the dot net version to use
 
 jobs:
   build:
