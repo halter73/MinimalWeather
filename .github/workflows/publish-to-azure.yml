@@ -8,7 +8,7 @@ env:
   AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
   CONFIGURATION: Release
   WORKING_DIRECTORY: dotnet/MinimalWeather
-  DOTNET_CORE_VERSION: '6.0.0-preview4-*'           # set this to the dot net version to use
+  DOTNET_CORE_VERSION: '6.0.100-preview.4.21255.5'           # set this to the dot net version to use
 
 jobs:
   build-and-deploy:
@@ -17,10 +17,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1.8.0
-      with:
-        dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
-        include-prerelease: true
+      run: |
+        wget https://dot.net/v1/dotnet-install.sh
+        bash ./dotnet-install.sh -Version ${{ env.DOTNET_CORE_VERSION }} -Verbose
+        echo "$HOME/.dotnet" >> $GITHUB_PATH
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}" -r linux-x64
     - name: Build
