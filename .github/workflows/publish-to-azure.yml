@@ -6,8 +6,9 @@ env:
   AZURE_WEBAPP_NAME: minimalweather20210428173256    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: './dotnet/MinimalWeather/publish'      # set this to the path to your web app project, defaults to the repository root
   AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
+  CONFIGURATION: Release
   WORKING_DIRECTORY: dotnet/MinimalWeather
-  DOTNET_VERSION: '6.0.x'           # set this to the dot net version to use
+  DOTNET_CORE_VERSION: '6.0.x'           # set this to the dot net version to use
 
 jobs:
   build-and-deploy:
