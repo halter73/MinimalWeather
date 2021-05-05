@@ -28,7 +28,7 @@ jobs:
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}" -r linux-x64
+      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --self-contained --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}" -r linux-x64
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
