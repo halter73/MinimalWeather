@@ -8,7 +8,7 @@ env:
   AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }} # Define secret variable in repository settings as per action documentation
   CONFIGURATION: Release
   WORKING_DIRECTORY: dotnet/MinimalWeather
-  DOTNET_CORE_VERSION: '6.0.x'           # set this to the dot net version to use
+  DOTNET_CORE_VERSION: '6.0.0-preview4-*'           # set this to the dot net version to use
 
 jobs:
   build-and-deploy:
