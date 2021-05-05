@@ -73,7 +73,7 @@ app.MapGet("/weather/{location}", (Func<Coordinate, Task<CombinedWeather>>)(asyn
         CurrentWeather = currentWeather,
         HourlyForecasts = hourlyForecasts,
         DailyForecasts = dailyForecasts,
-        DebugProperty = "Hello",
+        DebugProperty = "Hi!",
     };
 
     cache.Set(location, combined, new MemoryCacheEntryOptions
