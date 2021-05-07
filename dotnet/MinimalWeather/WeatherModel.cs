@@ -80,7 +80,7 @@ namespace MinimalWeather
         public WeatherSnapshot[] HourlyForecasts { get; set; }
         public FullDayForecast[] DailyForecasts { get; set; }
 
-        public string DebugProperty { get; set; }
+        public string Debug { get; set; }
     }
 
     public record TimeZoneResponse(TimeZone[] TimeZones);
